@@ -1,0 +1,22 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "description": "A simple inventory app :)",
+  "main": "app.js",
+  "scripts": {
+    "dev": "postcss ./src/css/styles.css -o ./public/build/styles.css --watch",
+    "prod": "cross-env NODE_ENV=production postcss ./src/css/styles.css -o ./public/build/styles.css"
+  },
+  "keywords": [],
+  "author": "Siavash Pargoli",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.13"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "cssnano": "^7.0.6"
+  }
+}
