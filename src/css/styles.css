@@ -11,4 +11,8 @@
     src: url('../../public/assets/fonts/Estedad-FD.woff2') format('woff2 supports variations'),
       url('../../public/assets/fonts/Estedad-FD.woff2') format('woff2-variations');
   }
+  
+  html {
+    font-family: 'Estedad', system-ui, sans-serif;
+  }
 }
