@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Estedad';
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    src: url('../../public/assets/fonts/Estedad-FD.woff2') format('woff2 supports variations'),
+      url('../../public/assets/fonts/Estedad-FD.woff2') format('woff2-variations');
+  }
+}
