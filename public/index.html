@@ -6,67 +6,69 @@
     <title>Inventory App</title>
     <link rel="stylesheet" href="./build/styles.css" />
   </head>
-  <body>
+  <body class="dark:bg-slate-700">
 
-    <nav class="bg-slate-50 text-gray-900 text-center mb-6">
+    <!-- TODO feat: add dark mode -->
+
+    <nav class="bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-white text-center mb-6">
       <div class="container mx-auto py-3 px-3 flex justify-center items-center">
         <h1 class="font-bold">اپلیکیشن انبارداری</h1>
       </div>
     </nav>
 
-    <!-- <div class="container mx-auto max-w-md text-gray-900 px-3 space-y-4 placeholder:text-gray-500 mb-6">
+    <div class="container mx-auto max-w-md text-gray-900 dark:text-white px-3 space-y-4 mb-6">
       <section>
         <h2 class="mb-2">اضافه کردن دسته‌بندی جدید</h2>
-        <form class="rounded ring-2 ring-slate-300 bg-slate-50 p-4 space-y-4 shadow-md">
+        <form class="rounded ring-2 ring-slate-300 bg-slate-50 dark:bg-slate-600 p-4 space-y-4 shadow-md">
           <div class="flex flex-col items-start gap-y-2">
             <label for="category-title">عنوان دسته‌بندی</label>
-            <input type="text" id="category-title" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0" placeholder="عنوان دسته‌بندی..." autocomplete="off" required>
+            <input type="text" id="category-title" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" placeholder="عنوان دسته‌بندی..." autocomplete="off" required>
           </div>
           <div class="flex flex-col items-start gap-y-2">
             <label for="category-description">توضیحات (اختیاری)</label>
-            <textarea id="category-description" class="form-textarea p-2 w-full h-40 resize-none rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0"></textarea>
+            <textarea id="category-description" class="form-textarea p-2 w-full h-40 resize-none rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1"></textarea>
           </div>
           <div class="flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-4">
-            <button type="button" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600">لغو</button>
-            <button type="submit" class="py-2 rounded-md ring-2 flex-1 hover:bg-blue-100 bg-blue-50 ring-blue-300 text-blue-600">اضافه کردن دسته‌بندی</button>
+            <button type="button" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600 dark:bg-transparent dark:text-gray-300 dark:hover:bg-slate-500">لغو</button>
+            <button type="submit" class="py-2 rounded-md ring-2 flex-1 bg-blue-50 hover:bg-blue-100 ring-blue-300 text-blue-600 dark:bg-transparent dark:hover:bg-blue-200 dark:text-blue-300 dark:hover:text-blue-600">اضافه کردن دسته‌بندی</button>
           </div>
         </form>
       </section>
     
       <section>
         <h2 class="mb-2">اضافه کردن محصول جدید</h2>
-        <form class="rounded ring-2 ring-slate-300 bg-slate-50 p-4 space-y-4 shadow-md">
+        <form class="rounded ring-2 ring-slate-300 bg-slate-50 dark:bg-slate-600 p-4 space-y-4 shadow-md">
           <div class="flex flex-col items-start gap-y-2">
             <label for="product-title">عنوان محصول</label>
-            <input type="text" id="product-title" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0" placeholder="عنوان محصول..." autocomplete="off" required>
+            <input type="text" id="product-title" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" placeholder="عنوان محصول..." autocomplete="off" required>
           </div>
           <div class="flex flex-col items-start gap-y-2">
             <label for="product-quantity">تعداد</label>
-            <input type="number" id="product-quantity" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0" min="0" placeholder="0" required>
+            <input type="number" id="product-quantity" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" min="0" placeholder="0" required>
           </div>
           <div class="flex flex-col items-start gap-y-2">
             <label for="product-category">دسته‌بندی</label>
-            <select id="product-category" class="form-select p-2 pr-10 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 text-gray-500" required>
-              <option value="" selected>یک دسته‌بندی انتخاب نمایید</option>
+            <select id="product-category" class="form-select p-2 pr-10 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 text-gray-500 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" required>
+              <option value="" class="dark:bg-slate-600" selected>یک دسته‌بندی انتخاب نمایید</option>
             </select>
           </div>
           <div class="flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-4">
-            <button type="button" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600">لغو</button>
-            <button type="submit" class="py-2 rounded-md ring-2 flex-1 hover:bg-blue-100 bg-blue-50 ring-blue-300 text-blue-600">اضافه کردن محصول</button>
+            <button type="button" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600 dark:bg-transparent dark:text-gray-300 dark:hover:bg-slate-500">لغو</button>
+            <button type="submit" class="py-2 rounded-md ring-2 flex-1 bg-blue-50 hover:bg-blue-100 ring-blue-300 text-blue-600 dark:bg-transparent dark:hover:bg-blue-200 dark:text-blue-300 dark:hover:text-blue-600">اضافه کردن محصول</button>
           </div>
         </form>
       </section>
-    </div> -->
+    </div>
 
     <main class="container mx-auto px-3 mb-6">
       <div class="flex justify-start items-center gap-4 mb-6 max-w-5xl mx-auto">
-        <button type="button" class="py-2 rounded-md ring-2 max-w-40 flex-1 ring-slate-300 text-slate-600 hover:bg-blue-100 hover:ring-blue-300 hover:text-blue-600">ایجاد دسته‌بندی</button>
-        <button type="button" class="py-2 rounded-md ring-2 max-w-40 flex-1 ring-slate-300 text-slate-600 hover:bg-blue-100 hover:ring-blue-300 hover:text-blue-600">ایجاد محصول</button>
+        <button type="button" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد دسته‌بندی</button>
+        <button type="button" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد محصول</button>
       </div>
       
       <div class="overflow-x-auto shadow-md sm:rounded-md max-w-5xl mx-auto">
-        <table class="w-full text-sm text-right text-gray-900">
-          <thead class="text-xs text-gray-700 bg-slate-100">
+        <table class="w-full text-sm text-right">
+          <thead class="text-xs bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-white">
             <tr>
               <th scope="col" class="px-6 py-3">نام محصول</th>
               <th scope="col" class="px-6 py-3">کد محصول</th>
@@ -77,10 +79,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b" id="products-empty">
+            <tr class="border-b bg-white text-gray-700 dark:bg-slate-600 dark:text-white" id="products-empty">
               <td colspan="6" class="px-6 py-4">داده‌ای برای نمایش یافت نشد.</td>
             </tr>
-            <!-- <tr class="bg-white hover:bg-slate-50 border-b">
+            <tr class="bg-white text-gray-700 dark:bg-slate-600 dark:text-white hover:bg-gray-100 dark:hover:bg-slate-700 border-b dark:border-gray-700">
               <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap"></th>
               <td class="px-6 py-4"></td>
               <td class="px-6 py-4"></td>
@@ -88,21 +90,21 @@
               <td class="px-6 py-4"></td>
               <td class="px-6 py-4 flex items-center gap-x-3">
                 <svg class="group hover:cursor-pointer" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="group-hover:fill-blue-500" d="M5.53999 19.5201C4.92999 19.5201 4.35999 19.31 3.94999 18.92C3.42999 18.43 3.17999 17.69 3.26999 16.89L3.63999 13.65C3.70999 13.04 4.07999 12.23 4.50999 11.79L12.72 3.10005C14.77 0.930049 16.91 0.870049 19.08 2.92005C21.25 4.97005 21.31 7.11005 19.26 9.28005L11.05 17.97C10.63 18.42 9.84999 18.84 9.23999 18.9401L6.01999 19.49C5.84999 19.5 5.69999 19.5201 5.53999 19.5201ZM15.93 2.91005C15.16 2.91005 14.49 3.39005 13.81 4.11005L5.59999 12.8101C5.39999 13.0201 5.16999 13.5201 5.12999 13.8101L4.75999 17.05C4.71999 17.38 4.79999 17.65 4.97999 17.82C5.15999 17.99 5.42999 18.05 5.75999 18L8.97999 17.4501C9.26999 17.4001 9.74999 17.14 9.94999 16.93L18.16 8.24005C19.4 6.92005 19.85 5.70005 18.04 4.00005C17.24 3.23005 16.55 2.91005 15.93 2.91005Z" fill="#292D32"/>
-                  <path class="group-hover:fill-blue-500" d="M17.3404 10.9498C17.3204 10.9498 17.2904 10.9498 17.2704 10.9498C14.1504 10.6398 11.6404 8.26985 11.1604 5.16985C11.1004 4.75985 11.3804 4.37985 11.7904 4.30985C12.2004 4.24985 12.5804 4.52985 12.6504 4.93985C13.0304 7.35985 14.9904 9.21985 17.4304 9.45985C17.8404 9.49985 18.1404 9.86985 18.1004 10.2798C18.0504 10.6598 17.7204 10.9498 17.3404 10.9498Z" fill="#292D32"/>
-                  <path class="group-hover:fill-blue-500" d="M21 22.75H3C2.59 22.75 2.25 22.41 2.25 22C2.25 21.59 2.59 21.25 3 21.25H21C21.41 21.25 21.75 21.59 21.75 22C21.75 22.41 21.41 22.75 21 22.75Z" fill="#292D32"/>
+                  <path class="group-hover:fill-blue-500 dark:fill-white" d="M5.53999 19.5201C4.92999 19.5201 4.35999 19.31 3.94999 18.92C3.42999 18.43 3.17999 17.69 3.26999 16.89L3.63999 13.65C3.70999 13.04 4.07999 12.23 4.50999 11.79L12.72 3.10005C14.77 0.930049 16.91 0.870049 19.08 2.92005C21.25 4.97005 21.31 7.11005 19.26 9.28005L11.05 17.97C10.63 18.42 9.84999 18.84 9.23999 18.9401L6.01999 19.49C5.84999 19.5 5.69999 19.5201 5.53999 19.5201ZM15.93 2.91005C15.16 2.91005 14.49 3.39005 13.81 4.11005L5.59999 12.8101C5.39999 13.0201 5.16999 13.5201 5.12999 13.8101L4.75999 17.05C4.71999 17.38 4.79999 17.65 4.97999 17.82C5.15999 17.99 5.42999 18.05 5.75999 18L8.97999 17.4501C9.26999 17.4001 9.74999 17.14 9.94999 16.93L18.16 8.24005C19.4 6.92005 19.85 5.70005 18.04 4.00005C17.24 3.23005 16.55 2.91005 15.93 2.91005Z" fill="#292D32"/>
+                  <path class="group-hover:fill-blue-500 dark:fill-white" d="M17.3404 10.9498C17.3204 10.9498 17.2904 10.9498 17.2704 10.9498C14.1504 10.6398 11.6404 8.26985 11.1604 5.16985C11.1004 4.75985 11.3804 4.37985 11.7904 4.30985C12.2004 4.24985 12.5804 4.52985 12.6504 4.93985C13.0304 7.35985 14.9904 9.21985 17.4304 9.45985C17.8404 9.49985 18.1404 9.86985 18.1004 10.2798C18.0504 10.6598 17.7204 10.9498 17.3404 10.9498Z" fill="#292D32"/>
+                  <path class="group-hover:fill-blue-500 dark:fill-white" d="M21 22.75H3C2.59 22.75 2.25 22.41 2.25 22C2.25 21.59 2.59 21.25 3 21.25H21C21.41 21.25 21.75 21.59 21.75 22C21.75 22.41 21.41 22.75 21 22.75Z" fill="#292D32"/>
                 </svg>
                 <svg class="group hover:cursor-pointer" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path class="group-hover:stroke-red-500" d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="group-hover:stroke-red-500" d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="group-hover:stroke-red-500" d="M18.85 9.14001L18.2 19.21C18.09 20.78 18 22 15.21 22H8.79002C6.00002 22 5.91002 20.78 5.80002 19.21L5.15002 9.14001" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="group-hover:stroke-red-500" d="M10.33 16.5H13.66" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path class="group-hover:stroke-red-500" d="M9.5 12.5H14.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="group-hover:stroke-red-500 dark:stroke-white" d="M21 5.97998C17.67 5.64998 14.32 5.47998 10.98 5.47998C9 5.47998 7.02 5.57998 5.04 5.77998L3 5.97998" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="group-hover:stroke-red-500 dark:stroke-white" d="M8.5 4.97L8.72 3.66C8.88 2.71 9 2 10.69 2H13.31C15 2 15.13 2.75 15.28 3.67L15.5 4.97" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="group-hover:stroke-red-500 dark:stroke-white" d="M18.85 9.14001L18.2 19.21C18.09 20.78 18 22 15.21 22H8.79002C6.00002 22 5.91002 20.78 5.80002 19.21L5.15002 9.14001" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="group-hover:stroke-red-500 dark:stroke-white" d="M10.33 16.5H13.66" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="group-hover:stroke-red-500 dark:stroke-white" d="M9.5 12.5H14.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </td>
-            </tr> -->
+            </tr>
           </tbody>
-          <tfoot class="text-xs text-gray-500 bg-slate-50 hidden">
+          <tfoot class="text-xs text-gray-500 bg-gray-100 dark:text-gray-200 dark:bg-slate-700">
             <tr>
               <th scope="col" colspan="6" class="px-6 py-3">تعداد محصولات: <span id="products-count">۰</span></th>
             </tr>
