@@ -32,9 +32,9 @@ class CategoryView {
   }
 
   createCategoriesList() {
-    let options = `<option value="" class="dark:bg-slate-600" selected>یک دسته‌بندی انتخاب نمایید</option>`;
+    let options = `<option value="-" class="dark:bg-slate-600" selected>یک دسته‌بندی انتخاب نمایید</option>`;
     this.categories.forEach((category) => {
-      options += `<option value="" class="dark:bg-slate-600">${category.title}</option>`;
+      options += `<option value="${category.id}" class="dark:bg-slate-600">${category.title}</option>`;
     });
     categoriesList.innerHTML = options;
   }
