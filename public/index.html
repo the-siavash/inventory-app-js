@@ -8,36 +8,40 @@
   </head>
   <body class="dark:bg-slate-700">
 
-    <!-- TODO feat: add dark mode -->
-
     <nav class="bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-white text-center mb-6">
       <div class="container mx-auto py-3 px-3 flex justify-center items-center">
         <h1 class="font-bold">اپلیکیشن انبارداری</h1>
       </div>
     </nav>
 
-    <div class="container mx-auto max-w-md text-gray-900 dark:text-white px-3 space-y-4 mb-6">
-      <section>
-        <h2 class="mb-2">اضافه کردن دسته‌بندی جدید</h2>
-        <form class="rounded ring-2 ring-slate-300 bg-slate-50 dark:bg-slate-600 p-4 space-y-4 shadow-md">
+    <div id="add-category-section" class="container mx-auto max-w-md text-gray-900 dark:text-white px-3 space-y-4 mb-6 relative z-10 hidden" role="dialog" aria-modal="true">
+      <div class="fixed inset-0 bg-gray-700 bg-opacity-80 transition-opacity" aria-hidden="true" data-backdrop></div>
+
+      <section class="fixed inset-0 z-10 overflow-y-auto max-w-md mx-auto top-5 min-h-fit">
+        <h2 class="mb-2 text-white font-bold">اضافه کردن دسته‌بندی جدید</h2>
+        <form class="rounded border-2 border-slate-300 bg-slate-50 dark:bg-slate-600 p-4 space-y-4 shadow-md">
           <div class="flex flex-col items-start gap-y-2">
             <label for="category-title">عنوان دسته‌بندی</label>
             <input type="text" id="category-title" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" placeholder="عنوان دسته‌بندی..." autocomplete="off" required>
           </div>
           <div class="flex flex-col items-start gap-y-2">
-            <label for="category-description">توضیحات (اختیاری)</label>
+            <label for="category-description">توضیحات</label>
             <textarea id="category-description" class="form-textarea p-2 w-full h-40 resize-none rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1"></textarea>
           </div>
           <div class="flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-4">
-            <button type="button" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600 dark:bg-transparent dark:text-gray-300 dark:hover:bg-slate-500">لغو</button>
-            <button type="submit" class="py-2 rounded-md ring-2 flex-1 bg-blue-50 hover:bg-blue-100 ring-blue-300 text-blue-600 dark:bg-transparent dark:hover:bg-blue-200 dark:text-blue-300 dark:hover:text-blue-600">اضافه کردن دسته‌بندی</button>
+            <button type="button" id="add-category-cancel" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600 dark:bg-transparent dark:text-gray-300 dark:hover:bg-slate-500">لغو</button>
+            <button type="submit" id="add-category-done" class="py-2 rounded-md ring-2 flex-1 bg-blue-50 hover:bg-blue-100 ring-blue-300 text-blue-600 dark:bg-transparent dark:hover:bg-blue-200 dark:text-blue-300 dark:hover:text-blue-600">اضافه کردن دسته‌بندی</button>
           </div>
         </form>
       </section>
-    
-      <section>
-        <h2 class="mb-2">اضافه کردن محصول جدید</h2>
-        <form class="rounded ring-2 ring-slate-300 bg-slate-50 dark:bg-slate-600 p-4 space-y-4 shadow-md">
+    </div>
+
+    <div id="add-product-section" class="container mx-auto max-w-md text-gray-900 dark:text-white px-3 space-y-4 mb-6 relative z-10 hidden" role="dialog" aria-modal="true">
+      <div class="fixed inset-0 bg-gray-700 bg-opacity-80 transition-opacity" aria-hidden="true" data-backdrop></div>
+
+      <section class="fixed inset-0 z-10 overflow-y-auto max-w-md mx-auto top-5 min-h-fit">
+        <h2 class="mb-2 text-white font-bold">اضافه کردن محصول جدید</h2>
+        <form class="rounded border-2 border-slate-300 bg-slate-50 dark:bg-slate-600 p-4 space-y-4 shadow-md">
           <div class="flex flex-col items-start gap-y-2">
             <label for="product-title">عنوان محصول</label>
             <input type="text" id="product-title" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" placeholder="عنوان محصول..." autocomplete="off" required>
@@ -53,8 +57,8 @@
             </select>
           </div>
           <div class="flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-4">
-            <button type="button" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600 dark:bg-transparent dark:text-gray-300 dark:hover:bg-slate-500">لغو</button>
-            <button type="submit" class="py-2 rounded-md ring-2 flex-1 bg-blue-50 hover:bg-blue-100 ring-blue-300 text-blue-600 dark:bg-transparent dark:hover:bg-blue-200 dark:text-blue-300 dark:hover:text-blue-600">اضافه کردن محصول</button>
+            <button type="button" id="add-product-cancel" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600 dark:bg-transparent dark:text-gray-300 dark:hover:bg-slate-500">لغو</button>
+            <button type="submit" id="add-product-done" class="py-2 rounded-md ring-2 flex-1 bg-blue-50 hover:bg-blue-100 ring-blue-300 text-blue-600 dark:bg-transparent dark:hover:bg-blue-200 dark:text-blue-300 dark:hover:text-blue-600">اضافه کردن محصول</button>
           </div>
         </form>
       </section>
@@ -62,8 +66,8 @@
 
     <main class="container mx-auto px-3 mb-6">
       <div class="flex justify-start items-center gap-4 mb-6 max-w-5xl mx-auto">
-        <button type="button" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد دسته‌بندی</button>
-        <button type="button" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد محصول</button>
+        <button type="button" id="add-category" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد دسته‌بندی</button>
+        <button type="button" id="add-product" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد محصول</button>
       </div>
       
       <div class="overflow-x-auto shadow-md sm:rounded-md max-w-5xl mx-auto">
