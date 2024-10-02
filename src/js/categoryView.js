@@ -1,4 +1,5 @@
 import Storage from './storage.js';
+import FormError from './formError.js';
 
 const categoryTitle = document.querySelector('#category-title');
 const categoryDescription = document.querySelector('#category-description');
@@ -7,6 +8,7 @@ const addCategoryButton = document.querySelector('#add-category');
 const cancelButton = document.querySelector('#add-category-cancel');
 const doneButton = document.querySelector('#add-category-done');
 const categoriesList = document.querySelector('#product-category');
+const addCategorySectionForm = addCategorySection.querySelector('form');
 
 class CategoryView {
   constructor() {
@@ -23,8 +25,19 @@ class CategoryView {
     event.preventDefault();
     const title = categoryTitle.value;
     const description = categoryDescription.value;
-    if (!title || !description) return;
+
+    FormError.removeAllErrorMessages(addCategorySectionForm);
+    if (!title) {
+      FormError.appendErrorElement(categoryTitle.parentElement, 'عنوان دسته‌بندی');
+      return;
+    }
+    if (!description) {
+      FormError.appendErrorElement(categoryDescription.parentElement, 'توضیحات');
+      return;
+    }
+
     Storage.saveCategory({ title, description });
+    addCategorySection.classList.toggle('hidden');
     this.resetCategoryFormData();
     this.categories = Storage.getAllCategories();
     this.createCategoriesList();
@@ -39,7 +52,7 @@ class CategoryView {
   }
 
   modalAddCategory() {
-    [addCategoryButton, cancelButton, doneButton].forEach((btn) => {
+    [addCategoryButton, cancelButton].forEach((btn) => {
       btn.addEventListener('click', () => {
         addCategorySection.classList.toggle('hidden');
         this.resetCategoryFormData();
@@ -55,6 +68,7 @@ class CategoryView {
   resetCategoryFormData() {
     categoryTitle.value = '';
     categoryDescription.value = '';
+    FormError.removeAllErrorMessages(addCategorySectionForm);
   }
 }
 

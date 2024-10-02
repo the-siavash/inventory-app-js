@@ -1,4 +1,5 @@
 import Storage from './storage.js';
+import FormError from './formError.js';
 
 const productTitle = document.querySelector('#product-title');
 const productQuantity = document.querySelector('#product-quantity');
@@ -11,6 +12,7 @@ const productsList = document.querySelector('#products');
 const productsCount = document.querySelector('#products-count');
 const searchInput = document.querySelector('#product-search');
 const selectedFilter = document.querySelector('#product-filter');
+const addProductSectionForm = addProductSection.querySelector('form');
 
 class ProductView {
   constructor() {
@@ -24,6 +26,7 @@ class ProductView {
     searchInput.addEventListener('input', (event) => this.searchProducts(event));
     selectedFilter.addEventListener('change', () => this.filterProducts());
     this.modalAddProduct();
+    productQuantity.onkeydown = (event) => /^[\u06F0-\u06F9\d]$/.test(event.key) || event.key === 'Backspace';
   }
 
   searchProducts() {
@@ -66,8 +69,23 @@ class ProductView {
     const title = productTitle.value;
     const quantity = parseInt(productQuantity.value);
     const category = productCategory.value;
-    if (!title || quantity < 0 || category === '-') return;
+
+    FormError.removeAllErrorMessages(addProductSectionForm);
+    if (!title) {
+      FormError.appendErrorElement(productTitle.parentElement, 'عنوان محصول');
+      return;
+    }
+    if (!quantity) {
+      FormError.appendErrorElement(productQuantity.parentElement, 'تعداد محصول');
+      return;
+    }
+    if (category === '-') {
+      FormError.appendErrorElement(productCategory.parentElement, 'دسته‌بندی');
+      return;
+    }
+
     Storage.saveProduct({ title, quantity, category });
+    addProductSection.classList.toggle('hidden');
     this.resetProductFormData();
     this.filterProducts();
   }
@@ -119,7 +137,7 @@ class ProductView {
   }
 
   modalAddProduct() {
-    [addProductButton, cancelButton, doneButton].forEach((btn) => {
+    [addProductButton, cancelButton].forEach((btn) => {
       btn.addEventListener('click', () => {
         addProductSection.classList.toggle('hidden');
         this.resetProductFormData();
@@ -134,8 +152,9 @@ class ProductView {
 
   resetProductFormData() {
     productTitle.value = '';
-    productQuantity.value = 0;
+    productQuantity.value = '';
     productCategory.value = '-';
+    FormError.removeAllErrorMessages(addProductSectionForm);
   }
 }
 

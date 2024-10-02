@@ -26,7 +26,7 @@
           </div>
           <div class="flex flex-col items-start gap-y-2">
             <label for="category-description">توضیحات</label>
-            <textarea id="category-description" class="form-textarea p-2 w-full h-40 resize-none rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1"></textarea>
+            <textarea id="category-description" class="form-textarea p-2 w-full h-40 resize-none rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1 ring-1" required></textarea>
           </div>
           <div class="flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-4">
             <button type="button" id="add-category-cancel" class="py-2 rounded-md ring-2 flex-1 hover:bg-slate-100 ring-slate-300 text-slate-600 dark:bg-transparent dark:text-gray-300 dark:hover:bg-slate-500">لغو</button>
@@ -48,7 +48,8 @@
           </div>
           <div class="flex flex-col items-start gap-y-2">
             <label for="product-quantity">تعداد</label>
-            <input type="number" id="product-quantity" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" min="0" value="0" placeholder="0" required>
+            <!-- <input type="number" id="product-quantity" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" min="0" value="0" placeholder="0" required> -->
+            <input type="text" id="product-quantity" class="form-input p-2 w-full rounded focus:outline-none focus:ring-slate-300 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-1" inputmode="numeric" placeholder="0" autocomplete="cc-number" required>
           </div>
           <div class="flex flex-col items-start gap-y-2">
             <label for="product-category">دسته‌بندی</label>
