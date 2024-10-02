@@ -43,4 +43,10 @@ export default class Storage {
     }
     localStorage.setItem('products', JSON.stringify(allProducts));
   }
+
+  static removeProduct(productIdToRemove) {
+    let allProducts = this.getAllProducts();
+    allProducts = allProducts.filter((product) => product.id !== productIdToRemove);
+    localStorage.setItem('products', JSON.stringify(allProducts));
+  }
 }
