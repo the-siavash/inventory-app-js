@@ -9,12 +9,52 @@ const cancelButton = document.querySelector('#add-product-cancel');
 const doneButton = document.querySelector('#add-product-done');
 const productsList = document.querySelector('#products');
 const productsCount = document.querySelector('#products-count');
+const searchInput = document.querySelector('#product-search');
+const selectedFilter = document.querySelector('#product-filter');
 
 class ProductView {
   constructor() {
     this.products = [];
+    this.filters = {
+      products: [],
+      searchChars: '',
+      sort: '',
+    };
     doneButton.addEventListener('click', (event) => this.addNewProduct(event));
+    searchInput.addEventListener('input', (event) => this.searchProducts(event));
+    selectedFilter.addEventListener('change', () => this.filterProducts());
     this.modalAddProduct();
+  }
+
+  searchProducts() {
+    this.filters.searchChars = searchInput.value.trim().toLowerCase();
+    this.createFilteredProducts();
+  }
+
+  filterProducts() {
+    this.filters.sort = selectedFilter.value;
+    switch (this.filters.sort) {
+      case 'newest':
+        this.products = Storage.getAllProducts();
+        break;
+      case 'oldest':
+        this.products = Storage.getAllProducts(false);
+        break;
+    }
+    this.createFilteredProducts();
+  }
+
+  createFilteredProducts() {
+    if (this.filters.searchChars) {
+      this.filters.products = this.products.filter((product) => {
+        return product.title.toLowerCase().includes(this.filters.searchChars);
+      });
+      this.createProductItems(this.filters.products);
+      this.updateProductsCount(this.filters.products);
+    } else {
+      this.createProductItems();
+      this.updateProductsCount();
+    }
   }
 
   setApp() {
@@ -31,13 +71,13 @@ class ProductView {
     productTitle.value = '';
     productQuantity.value = 0;
     productCategory.value = '-';
-    this.products = Storage.getAllProducts();
-    this.createProductItems();
-    this.updateProductsCount();
+    // this.products = Storage.getAllProducts();
+    // this.createFilteredProducts();
+    this.filterProducts();
   }
 
-  createProductItems() {
-    if (this.products.length === 0) {
+  createProductItems(products = this.products) {
+    if (products.length === 0) {
       productsList.innerHTML = `
       <tr class="border-b bg-white text-gray-700 dark:bg-slate-600 dark:text-white" id="products-empty">
         <td colspan="6" class="px-6 py-4">داده‌ای برای نمایش یافت نشد.</td>
@@ -46,7 +86,7 @@ class ProductView {
     }
 
     let productItems = '';
-    this.products.forEach((product) => {
+    products.forEach((product) => {
       productItems += this.#createProductItem(product);
     });
     productsList.innerHTML = productItems;
@@ -78,8 +118,8 @@ class ProductView {
     </tr>`;
   }
 
-  updateProductsCount() {
-    productsCount.textContent = this.products.length;
+  updateProductsCount(products = this.products) {
+    productsCount.textContent = products.length;
   }
 
   modalAddProduct() {

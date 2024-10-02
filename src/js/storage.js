@@ -20,9 +20,11 @@ export default class Storage {
     localStorage.setItem('categories', JSON.stringify(allCategories));
   }
 
-  static getAllProducts() {
+  static getAllProducts(descSort = true) {
     const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
-    return savedProducts.sort((a, b) => (a > b) ? -1 : 1);
+    if (descSort)
+      return savedProducts.sort((a, b) => (new Date(a.createdAt) > new Date(b.createdAt)) ? -1 : 1);
+    return savedProducts.sort((a, b) => (new Date(a.createdAt) < new Date(b.createdAt)) ? -1 : 1);
   }
 
   static saveProduct(productToSave) {

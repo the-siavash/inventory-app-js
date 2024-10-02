@@ -69,6 +69,14 @@
         <button type="button" id="add-category" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد دسته‌بندی</button>
         <button type="button" id="add-product" class="max-w-40 flex-1 py-2 rounded-md ring-2 ring-slate-300 hover:ring-blue-300 text-slate-600 hover:text-blue-600 bg-transparent hover:bg-blue-100 dark:text-gray-300 dark:hover:text-blue-600 dark:bg-transparent dark:hover:bg-blue-200">ایجاد محصول</button>
       </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-stretch gap-y-4 max-w-5xl mx-auto mb-6">
+        <input type="search" id="product-search" class="form-input p-2 w-full sm:w-2/4 order-1 sm:order-none rounded text-slate-600 focus:outline-none focus:ring-slate-300 focus:ring-2 ring-2 ring-slate-200 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-300 dark:bg-transparent dark:ring-slate-400 dark:ring-2" placeholder="جستجو در نام محصولات..." autocomplete="off">
+        <select id="product-filter" class="form-select p-2 pr-10 w-2/4 sm:w-1/4 rounded text-slate-600 focus:outline-none focus:ring-slate-300 focus:ring-2 ring-2 ring-slate-200 border-0 focus:border-0 placeholder:text-gray-500 dark:placeholder:text-gray-300 dark:text-gray-200 dark:bg-transparent dark:ring-slate-400 dark:ring-2" required>
+          <option value="newest" class="dark:bg-slate-600" selected>جدیدترین</option>
+          <option value="oldest" class="dark:bg-slate-600">قدیمی‌ ترین</option>
+        </select>
+      </div>
       
       <div class="overflow-x-auto shadow-md sm:rounded-md max-w-5xl mx-auto">
         <table class="w-full text-sm text-right">
