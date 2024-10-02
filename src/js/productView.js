@@ -68,7 +68,7 @@ class ProductView {
   addNewProduct(event) {
     event.preventDefault();
     const title = productTitle.value;
-    const quantity = parseInt(productQuantity.value);
+    const quantity = productQuantity.value;
     const category = productCategory.value;
 
     FormError.removeAllErrorMessages(addProductSectionForm);
