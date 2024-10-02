@@ -25,8 +25,7 @@ class CategoryView {
     const description = categoryDescription.value;
     if (!title || !description) return;
     Storage.saveCategory({ title, description });
-    categoryTitle.value = '';
-    categoryDescription.value = '';
+    this.resetCategoryFormData();
     this.categories = Storage.getAllCategories();
     this.createCategoriesList();
   }
@@ -43,6 +42,7 @@ class CategoryView {
     [addCategoryButton, cancelButton, doneButton].forEach((btn) => {
       btn.addEventListener('click', () => {
         addCategorySection.classList.toggle('hidden');
+        this.resetCategoryFormData();
       });
     });
 
@@ -52,7 +52,10 @@ class CategoryView {
     });
   }
 
-  cancelAddCategory() {}
+  resetCategoryFormData() {
+    categoryTitle.value = '';
+    categoryDescription.value = '';
+  }
 }
 
 export default new CategoryView();

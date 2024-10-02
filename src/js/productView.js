@@ -68,11 +68,7 @@ class ProductView {
     const category = productCategory.value;
     if (!title || quantity < 0 || category === '-') return;
     Storage.saveProduct({ title, quantity, category });
-    productTitle.value = '';
-    productQuantity.value = 0;
-    productCategory.value = '-';
-    // this.products = Storage.getAllProducts();
-    // this.createFilteredProducts();
+    this.resetProductFormData();
     this.filterProducts();
   }
 
@@ -126,6 +122,7 @@ class ProductView {
     [addProductButton, cancelButton, doneButton].forEach((btn) => {
       btn.addEventListener('click', () => {
         addProductSection.classList.toggle('hidden');
+        this.resetProductFormData();
       });
     });
 
@@ -135,7 +132,11 @@ class ProductView {
     });
   }
 
-  cancelAddProduct() {}
+  resetProductFormData() {
+    productTitle.value = '';
+    productQuantity.value = 0;
+    productCategory.value = '-';
+  }
 }
 
 export default new ProductView();
