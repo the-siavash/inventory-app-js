@@ -59,6 +59,10 @@ class CategoryView {
       });
     });
 
+    document.addEventListener('keyup', (event) => {
+      if (event.key === 'Escape') addCategorySection.classList.add('hidden');
+    });
+
     addCategorySection.addEventListener('click', (event) => {
       if (event.target.hasAttribute('data-backdrop'))
         addCategorySection.classList.toggle('hidden');

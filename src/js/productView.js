@@ -144,6 +144,10 @@ class ProductView {
       });
     });
 
+    document.addEventListener('keyup', (event) => {
+      if (event.key === 'Escape') addProductSection.classList.add('hidden');
+    });
+
     addProductSection.addEventListener('click', (event) => {
       if (event.target.hasAttribute('data-backdrop'))
         addProductSection.classList.toggle('hidden');
