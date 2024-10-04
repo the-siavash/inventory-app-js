@@ -9,6 +9,7 @@ const cancelButton = document.querySelector('#add-category-cancel');
 const doneButton = document.querySelector('#add-category-done');
 const categoriesList = document.querySelector('#product-category');
 const addCategorySectionForm = addCategorySection.querySelector('form');
+const editedCategoriesList = document.querySelector('#edited-product-category');
 
 class CategoryView {
   constructor() {
@@ -49,6 +50,7 @@ class CategoryView {
       options += `<option value="${category.id}" class="dark:bg-slate-600">${category.title}</option>`;
     });
     categoriesList.innerHTML = options;
+    editedCategoriesList.innerHTML = options;
   }
 
   modalAddCategory() {

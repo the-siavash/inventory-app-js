@@ -14,6 +14,14 @@ const searchInput = document.querySelector('#product-search');
 const selectedFilter = document.querySelector('#product-filter');
 const addProductSectionForm = addProductSection.querySelector('form');
 
+const editProductSection = document.querySelector('#edit-product-section');
+const editProductCancelButton = document.querySelector('#edit-product-cancel');
+const editProductDoneButton = document.querySelector('#edit-product-done');
+const editedProductTitle = document.querySelector('#edited-product-title');
+const editedProductQuantity = document.querySelector('#edited-product-quantity');
+const editedProductCategory = document.querySelector('#edited-product-category');
+const editProductSectionForm = editProductSection.querySelector('form');
+
 class ProductView {
   constructor() {
     this.products = [];
@@ -22,10 +30,13 @@ class ProductView {
       searchChars: '',
       sort: '',
     };
+
     doneButton.addEventListener('click', (event) => this.addNewProduct(event));
     searchInput.addEventListener('input', (event) => this.searchProducts(event));
     selectedFilter.addEventListener('change', () => this.filterProducts());
+
     this.modalAddProduct();
+    this.modalEditProduct();
     productQuantity.onkeydown = (event) => /^[\u06F0-\u06F9\d]$/.test(event.key) || event.key === 'Backspace';
     productsList.addEventListener('click', (event) => this.productActionButtonsEvent(event));
   }
@@ -155,6 +166,22 @@ class ProductView {
     });
   }
 
+  modalEditProduct() {
+    editProductCancelButton.addEventListener('click', () => {
+      editProductSection.classList.toggle('hidden');
+      this.resetProductFormData();
+    });
+
+    document.addEventListener('keyup', (event) => {
+      if (event.key === 'Escape') editProductSection.classList.add('hidden');
+    });
+
+    editProductSection.addEventListener('click', (event) => {
+      if (event.target.hasAttribute('data-backdrop'))
+        editProductSection.classList.toggle('hidden');
+    });
+  }
+
   resetProductFormData() {
     productTitle.value = '';
     productQuantity.value = '';
@@ -164,13 +191,59 @@ class ProductView {
 
   productActionButtonsEvent(event) {
     const target = event.target.closest('svg');
-    if (!target) return;
+    if (!target || event.target.tagName !== 'svg') return;
 
     switch (target.dataset.action) {
       case 'remove':
         this.removeProduct(event);
         break;
+      case 'edit':
+        const productId = parseInt(event.target.parentElement.dataset.id);
+        const product = this.products.find((product) => product.id === productId);
+        // open editProductSection
+        editProductSection.classList.toggle('hidden');
+        // populate form data
+        FormError.removeAllErrorMessages(editProductSectionForm);
+        editedProductTitle.value = product.title;
+        editedProductQuantity.value = product.quantity;
+        for (const i of editedProductCategory) {
+          if (i.value === product.category) i.selected = true;
+        }
+        // edit functionality
+        editProductDoneButton.onclick = (event) => this.editProduct(event, product);
+        break;
     }
+  }
+
+  editProduct(event, product) {
+    event.preventDefault();
+
+    const title = editedProductTitle.value;
+    const quantity = editedProductQuantity.value;
+    const category = editedProductCategory.value;
+
+    FormError.removeAllErrorMessages(editProductSectionForm);
+    if (!title) {
+      FormError.appendErrorElement(editedProductTitle.parentElement, 'عنوان محصول');
+      return;
+    }
+    if (!quantity) {
+      FormError.appendErrorElement(editedProductQuantity.parentElement, 'تعداد محصول');
+      return;
+    }
+    if (category === '-') {
+      FormError.appendErrorElement(editedProductCategory.parentElement, 'دسته‌بندی');
+      return;
+    }
+
+    product.title = title;
+    product.quantity = quantity;
+    product.category = category;
+    
+    Storage.saveProduct(product);
+    editProductSection.classList.toggle('hidden');
+    this.resetProductFormData();
+    this.filterProducts();
   }
 
   removeProduct(event) {
