@@ -126,7 +126,7 @@ class ProductView {
       <td class="px-6 py-4">${product.id}</td>
       <td class="px-6 py-4">${selectedCategory.title}</td>
       <td class="px-6 py-4">${product.quantity}</td>
-      <td class="px-6 py-4">${new Date(product.createdAt).toLocaleDateString('fa-IR')}</td>
+      <td class="px-6 py-4">${new Date(product.updatedAt).toLocaleDateString('fa-IR')}</td>
       <td class="px-6 py-4 flex items-center gap-x-3" data-id="${product.id}">
         <button title="بازبینی اطلاعت محصول" data-action="edit">
           <svg class="group hover:cursor-pointer" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
