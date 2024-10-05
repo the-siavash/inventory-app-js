@@ -20,6 +20,12 @@ export default class Storage {
     localStorage.setItem('categories', JSON.stringify(allCategories));
   }
 
+  static removeCategory(categoryIdToRemove) {
+    let allCategories = this.getAllCategories();
+    allCategories = allCategories.filter((category) => category.id !== categoryIdToRemove);
+    localStorage.setItem('categories', JSON.stringify(allCategories));
+  }
+
   static getAllProducts(descSort = true) {
     const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
     if (descSort)
@@ -49,6 +55,12 @@ export default class Storage {
   static removeProduct(productIdToRemove) {
     let allProducts = this.getAllProducts();
     allProducts = allProducts.filter((product) => product.id !== productIdToRemove);
+    localStorage.setItem('products', JSON.stringify(allProducts));
+  }
+
+  static removeProducts(categoryId) {
+    let allProducts = this.getAllProducts();
+    allProducts = allProducts.filter((product) => parseInt(product.category) !== categoryId);
     localStorage.setItem('products', JSON.stringify(allProducts));
   }
 }
