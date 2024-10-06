@@ -78,11 +78,19 @@ class ProductView {
 
   addNewProduct(event) {
     event.preventDefault();
-    const title = productTitle.value;
+    const title = productTitle.value.trim();
     const quantity = productQuantity.value;
     const category = productCategory.value;
 
     FormError.removeAllErrorMessages(addProductSectionForm);
+    // user can not save two categories with same title
+    const productsWithSameCategory = (category === '-') ? this.products : this.products.filter((product) => product.category === category);    
+    const isTitleExisted = productsWithSameCategory.some((product) => product.title.toLowerCase() === title.toLowerCase());
+    if (isTitleExisted) {
+      FormError.appendCustomErrorElement(productTitle.parentElement, 'عنوان محصول تکراری است!');
+      return;
+    }
+    // form error handling
     if (!title) {
       FormError.appendErrorElement(productTitle.parentElement, 'عنوان محصول');
       return;
@@ -212,7 +220,7 @@ class ProductView {
         editedProductQuantity.value = product.quantity;
         for (const i of editedProductCategory) {
           if (i.value === product.category) i.selected = true;
-        }
+        }        
         // edit functionality
         editProductDoneButton.onclick = (event) => this.editProduct(event, product);
         break;
@@ -222,11 +230,22 @@ class ProductView {
   editProduct(event, product) {
     event.preventDefault();
 
-    const title = editedProductTitle.value;
+    const title = editedProductTitle.value.trim();
     const quantity = editedProductQuantity.value;
     const category = editedProductCategory.value;
 
     FormError.removeAllErrorMessages(editProductSectionForm);
+    // user can not save two categories with same title
+    let productsWithSameCategory = (category === '-') ? this.products : this.products.filter((product) => product.category === category);
+    if (product.title.toLowerCase() === title.toLowerCase() && product.category === category) {
+      productsWithSameCategory = productsWithSameCategory.filter((product) => product.category !== category);
+    }
+    const isTitleExisted = productsWithSameCategory.some((product) => product.title.toLowerCase() === title.toLowerCase());    
+    if (isTitleExisted) {
+      FormError.appendCustomErrorElement(editedProductTitle.parentElement, 'عنوان محصول تکراری است!');
+      return;
+    }
+    // form error handling
     if (!title) {
       FormError.appendErrorElement(editedProductTitle.parentElement, 'عنوان محصول');
       return;

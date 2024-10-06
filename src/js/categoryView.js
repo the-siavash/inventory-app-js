@@ -61,10 +61,17 @@ class CategoryView {
     event.preventDefault();
 
     const category = this.selectedCategory;
-    const title = manageSelectedCategoryTitle.value;
-    const description = manageSelectedCategoryDescription.value;
+    const title = manageSelectedCategoryTitle.value.trim();
+    const description = manageSelectedCategoryDescription.value.trim();
 
     FormError.removeAllErrorMessages(manageCategoriesSectionForm);
+    // user can not save two categories with same title
+    const isTitleExisted = this.categories.some((category) => category.title.toLowerCase() === title.toLowerCase());
+    if (isTitleExisted) {
+      FormError.appendCustomErrorElement(manageSelectedCategoryTitle.parentElement, 'عنوان دسته‌بندی تکراری است!');
+      return;
+    }
+    // form error handling
     if (manageSelectedCategory.value === '-') {
       FormError.appendErrorElement(manageSelectedCategory.parentElement, 'دسته‌بندی');
       return;
@@ -78,8 +85,8 @@ class CategoryView {
       return;
     }
     
-    category.title = manageSelectedCategoryTitle.value;
-    category.description = manageSelectedCategoryDescription.value;
+    category.title = title;
+    category.description = description;
     Storage.saveCategory(category);
 
     this.resetManageCategoriesFormData();
@@ -97,10 +104,17 @@ class CategoryView {
 
   addNewCategory(event) {
     event.preventDefault();
-    const title = categoryTitle.value;
-    const description = categoryDescription.value;
+    const title = categoryTitle.value.trim();
+    const description = categoryDescription.value.trim();
 
     FormError.removeAllErrorMessages(addCategorySectionForm);
+    // user can not save two categories with same title
+    const isTitleExisted = this.categories.some((category) => category.title.toLowerCase() === title.toLowerCase());
+    if (isTitleExisted) {
+      FormError.appendCustomErrorElement(categoryTitle.parentElement, 'عنوان دسته‌بندی تکراری است!');
+      return;
+    }
+    // form error handling
     if (!title) {
       FormError.appendErrorElement(categoryTitle.parentElement, 'عنوان دسته‌بندی');
       return;
