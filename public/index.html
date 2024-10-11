@@ -4,13 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory App</title>
+    <script src="https://kit.fontawesome.com/53fd9fa5b5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./build/styles.css" />
   </head>
   <body class="dark:bg-slate-700">
 
     <nav class="bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-white text-center mb-6">
-      <div class="container mx-auto py-3 px-3 flex justify-center items-center">
+      <div class="container mx-auto xl:max-w-5xl py-3 px-3 flex justify-between items-center">
         <h1 class="font-bold">اپلیکیشن انبارداری</h1>
+        <button class="text-lg" id="toggler">
+          <i class="fa-solid fa-sun align-middle" id="light-mode"></i>
+          <i class="fa-solid fa-moon align-middle hidden" id="dark-mode"></i>
+        </button>
       </div>
     </nav>
 
