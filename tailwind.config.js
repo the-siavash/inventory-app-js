@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./public/**/*.html', './src/js/*.js'],
+  content: ['./public/**/*.html', './index.html', './src/js/*.js'],
   theme: {
     fontFamily: {
       estedad: ['Estedad', 'sans-serif'],
