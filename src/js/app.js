@@ -18,13 +18,13 @@ const toggler = document.querySelector('#toggler');
 const lightMode = document.querySelector('#light-mode');
 const darkMode = document.querySelector('#dark-mode');
 toggler.addEventListener('click', (event) => {
-  if (event.target.id === 'light-mode') {
-    lightMode.classList.add('hidden');
-    darkMode.classList.remove('hidden');
-    document.querySelector('html').classList.add('dark');
-  } else {
+  if (event.target.id === 'dark-mode') {
     lightMode.classList.remove('hidden');
     darkMode.classList.add('hidden');
+    document.querySelector('html').classList.add('dark');
+  } else {
+    lightMode.classList.add('hidden');
+    darkMode.classList.remove('hidden');
     document.querySelector('html').classList.remove('dark');
   }
 });
